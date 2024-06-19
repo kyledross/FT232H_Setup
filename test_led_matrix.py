@@ -1,5 +1,9 @@
 # this tests the FT232H and the IS31FL3741 LED driver
 
+import os
+
+os.environ["BLINKA_FT232H"] = "1"
+
 from board import I2C
 import adafruit_is31fl3741
 from adafruit_is31fl3741.adafruit_rgbmatrixqt import Adafruit_RGBMatrixQT

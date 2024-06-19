@@ -1,10 +1,6 @@
-# check to see if environment variable is set
 import os
-if "BLINKA_FT232H" in os.environ:
-    print("BLINKA_FT232H is set to", os.environ["BLINKA_FT232H"])
-else:
-    print("BLINKA_FT232H is not set")
 
+os.environ["BLINKA_FT232H"] = "1"
 
 # Test FT232H devices are enumerated correctly
 from pyftdi.ftdi import Ftdi
