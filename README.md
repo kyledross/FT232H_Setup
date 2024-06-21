@@ -13,8 +13,11 @@ libusb is a library that provides generic access to USB devices.  Once installed
 
 ```commandline
 sudo apt install libusb-1.0-0
+```
+``` commandline
 sudo nano /etc/udev/rules.d/11-ftdi.rules
 ```
+
 Add the following lines to the /etc/udev/rules.d/11-ftdi.rules file:
 
 ```text
@@ -28,6 +31,8 @@ SUBSYSTEM=="usb", ATTR{idVendor}=="0403", ATTR{idProduct}=="6015", GROUP="plugde
 #### Install Python packages into your virtual environment
 ```commandline
 pip install pyftdi
+```
+```commandline
 pip install Adafruit-blinka
 ```
 
