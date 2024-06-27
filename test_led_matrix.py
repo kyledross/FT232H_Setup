@@ -1,4 +1,6 @@
 # this tests the FT232H and the IS31FL3741 LED driver
+# pip install adafruit-circuitpython-bme280
+# pip install adafruit-circuitpython-is31fl3741
 
 import os
 
