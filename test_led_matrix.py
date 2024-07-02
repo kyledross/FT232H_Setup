@@ -4,6 +4,8 @@
 
 import os
 
+COLOR = "purple"
+
 os.environ["BLINKA_FT232H"] = "1"
 
 from board import I2C
@@ -38,9 +40,10 @@ eyes = [(5, 3), (8, 3)]
 mouth = [(4, 6), (5, 7), (6, 7), (7, 7), (8, 7), (9, 6)]
 
 for eye in eyes:
-    matrix.pixel(eye[0], eye[1], get_color("yellow"))
+    matrix.pixel(eye[0], eye[1], get_color(COLOR))
 
 for mouth_pixel in mouth:
-    matrix.pixel(mouth_pixel[0], mouth_pixel[1], get_color("yellow"))
+    matrix.pixel(mouth_pixel[0], mouth_pixel[1], get_color(COLOR))
 
 matrix.show()
+
