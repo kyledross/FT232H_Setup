@@ -15,6 +15,7 @@ from webcolors import name_to_rgb
 
 import time
 
+
 def loop_intensity(matrix):
     while True:
         # Increase intensity from 0 to 255
@@ -49,18 +50,45 @@ def create_matrix() -> Adafruit_RGBMatrixQT:
     return new_matrix
 
 
+def create_face_matrix():
+    matrix = create_matrix()
+    # Define the coordinates for the eyes and the mouth of the smiley face
+    eyes = [(5, 3), (8, 3)]
+    mouth = [(4, 6), (5, 7), (6, 7), (7, 7), (8, 7), (9, 6)]
+    for eye in eyes:
+        matrix.pixel(eye[0], eye[1], get_color(COLOR))
+    for mouth_pixel in mouth:
+        matrix.pixel(mouth_pixel[0], mouth_pixel[1], get_color(COLOR))
+    return matrix
+
+def create_gradient_matrix(matrix, start_color_int, end_color_int, width, height):
+    # Convert integer colors back to RGB components
+    start_color_rgb = ((start_color_int >> 16) & 0xFF, (start_color_int >> 8) & 0xFF, start_color_int & 0xFF)
+    end_color_rgb = ((end_color_int >> 16) & 0xFF, (end_color_int >> 8) & 0xFF, end_color_int & 0xFF)
+
+    # Calculate the step change for each color component
+    step_change = [(end_color_rgb[i] - start_color_rgb[i]) / (width - 1) for i in range(3)]
+
+    for x in range(width):
+        # Calculate the color for the current column
+        current_color = [int(start_color_rgb[i] + (step_change[i] * x)) for i in range(3)]
+        color_int = create_color_int(*current_color)
+
+        # Apply the color to each pixel in the current column
+        for y in range(height):
+            matrix.pixel(x, y, color_int)
+
+
+# Define the start (orange) and end (purple) colors
+orange = name_to_rgb("darkorange")
+purple = name_to_rgb("blue")
+
+# Convert RGB tuples to integers
+start_color_int = create_color_int(orange.red, orange.green, orange.blue)
+end_color_int = create_color_int(purple.red, purple.green, purple.blue)
+
+# Assuming `matrix` is your Adafruit_RGBMatrixQT object
 matrix = create_matrix()
-
-# Define the coordinates for the eyes and the mouth of the smiley face
-eyes = [(5, 3), (8, 3)]
-mouth = [(4, 6), (5, 7), (6, 7), (7, 7), (8, 7), (9, 6)]
-
-for eye in eyes:
-    matrix.pixel(eye[0], eye[1], get_color(COLOR))
-
-for mouth_pixel in mouth:
-    matrix.pixel(mouth_pixel[0], mouth_pixel[1], get_color(COLOR))
-
-loop_intensity(matrix)
-
-
+create_gradient_matrix(matrix, start_color_int, end_color_int, 16, 9)
+matrix.global_current = 0xFF
+matrix.show()
