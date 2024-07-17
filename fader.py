@@ -81,11 +81,11 @@ def create_gradient_matrix(matrix, start_color_int, end_color_int, width, height
 
 # Define the start (orange) and end (purple) colors
 orange = name_to_rgb("darkorange")
-purple = name_to_rgb("blue")
+purple = name_to_rgb("purple")
 
 # Convert RGB tuples to integers
-start_color_int = create_color_int(orange.red, orange.green, orange.blue)
-end_color_int = create_color_int(purple.red, purple.green, purple.blue)
+start_color_int = create_color_int(purple.red, purple.green, purple.blue)
+end_color_int = create_color_int(orange.red, orange.green, orange.blue)
 
 # Assuming `matrix` is your Adafruit_RGBMatrixQT object
 matrix = create_matrix()
