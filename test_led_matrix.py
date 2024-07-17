@@ -1,15 +1,17 @@
 # this tests the FT232H and the IS31FL3741 LED driver
 # pip install adafruit-circuitpython-bme280
 # pip install adafruit-circuitpython-is31fl3741
-from board import I2C
-import adafruit_is31fl3741
-from adafruit_is31fl3741.adafruit_rgbmatrixqt import Adafruit_RGBMatrixQT
-from webcolors import name_to_rgb
+
 import os
 
 COLOR = "purple"
 
 os.environ["BLINKA_FT232H"] = "1"
+
+from board import I2C
+import adafruit_is31fl3741
+from adafruit_is31fl3741.adafruit_rgbmatrixqt import Adafruit_RGBMatrixQT
+from webcolors import name_to_rgb
 
 
 def create_color_int(r: int, g: int, b: int) -> int:
@@ -44,3 +46,4 @@ for mouth_pixel in mouth:
     matrix.pixel(mouth_pixel[0], mouth_pixel[1], get_color(COLOR))
 
 matrix.show()
+
