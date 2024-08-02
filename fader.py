@@ -81,7 +81,7 @@ def create_gradient_matrix(matrix, start_color_int, end_color_int, width, height
 
 # Define the start (orange) and end (purple) colors
 orange = name_to_rgb("darkorange")
-purple = name_to_rgb("purple")
+purple = name_to_rgb("indigo")
 
 # Convert RGB tuples to integers
 start_color_int = create_color_int(purple.red, purple.green, purple.blue)
